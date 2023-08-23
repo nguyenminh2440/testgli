@@ -12,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class ProductDto {
     private Long id;
+    private String code;
 
     private String name;
     private double price;
