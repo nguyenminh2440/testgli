@@ -1,11 +1,13 @@
 package minh.demogli.controller;
 
+import com.lowagie.text.DocumentException;
 import jakarta.servlet.http.HttpServletResponse;
 import minh.demogli.entity.Product;
 import minh.demogli.payload.ProductDetailDto;
 import minh.demogli.payload.ProductDto;
 import minh.demogli.service.ProductService;
 import minh.demogli.utils.ExcelGenerator;
+import minh.demogli.utils.PdfGenerator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -75,6 +77,20 @@ public class ProductController {
         List <Product> productList = productService.getAllProducts();
         ExcelGenerator generator = new ExcelGenerator(productList);
         generator.generateExcelFile(response);
+    }
+
+    @GetMapping("/export-to-pdf")
+    public void generatePdfFile(HttpServletResponse response) throws DocumentException, IOException
+    {
+        response.setContentType("application/pdf");
+        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD:HH:MM:SS");
+        String currentDateTime = dateFormat.format(new Date());
+        String headerkey = "Content-Disposition";
+        String headervalue = "attachment; filename=product" + currentDateTime + ".pdf";
+        response.setHeader(headerkey, headervalue);
+        List < Product > productList = productService.getAllProducts();
+        PdfGenerator generator = new PdfGenerator();
+        generator.generate(productList, response);
     }
 
 
