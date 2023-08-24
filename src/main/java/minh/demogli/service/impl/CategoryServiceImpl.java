@@ -57,7 +57,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     }
 
-
+    //Map between dto and entity with MapStruct
     private CategoryDto mapToDto(Category category) {
         return TestMapper.INSTANCE.convert(category);
     }

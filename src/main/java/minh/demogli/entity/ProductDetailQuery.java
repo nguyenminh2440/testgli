@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import minh.demogli.payload.ProductDetailDto;
 
 import java.util.Date;
-
+//Query for product detail
 @Entity
 @NamedNativeQuery(name = "getProductDetailDto",query = "SELECT products.name as pName,\n" +
         " products.code as pCode,\n" +

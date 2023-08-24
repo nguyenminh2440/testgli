@@ -1,11 +1,13 @@
 package minh.demogli.service.impl;
 
 import minh.demogli.entity.Category;
+import minh.demogli.entity.JasperDetail;
 import minh.demogli.entity.Product;
-import minh.demogli.payload.CategoryDto;
+import minh.demogli.payload.JasperDetailDto;
 import minh.demogli.payload.ProductDetailDto;
 import minh.demogli.payload.ProductDto;
 import minh.demogli.repository.CategoryRepository;
+import minh.demogli.repository.JasperRepository;
 import minh.demogli.repository.ProductRepository;
 import minh.demogli.service.ProductService;
 import minh.demogli.utils.TestMapper;
@@ -19,10 +21,13 @@ public class ProductServiceImpl implements ProductService {
 
     ProductRepository productRepository;
     CategoryRepository categoryRepository;
+    JasperRepository jasperRepository;
 
-    public ProductServiceImpl(ProductRepository productRepository, CategoryRepository categoryRepository) {
+
+    public ProductServiceImpl(ProductRepository productRepository, CategoryRepository categoryRepository,JasperRepository jasperRepository) {
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
+        this.jasperRepository = jasperRepository;
     }
 
     @Override
@@ -70,6 +75,12 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.getAllProducts();
     }
 
+    //Get the List for Jasper report
+    @Override
+    public List<JasperDetailDto> getJasperList() {
+        return jasperRepository.getJasperList().stream().map(this::mapToDto).collect(Collectors.toList());
+    }
+
     @Override
     public void deleteProduct(Long id, Long categoryId) {
         productRepository.deleteProduct(categoryId,id);
@@ -80,5 +91,13 @@ public class ProductServiceImpl implements ProductService {
 
     private Product mapToEntity(ProductDto productDto) {
         return TestMapper.INSTANCE.convert(productDto);
+    }
+
+    private JasperDetail mapToEntity(JasperDetailDto dto) {
+        return TestMapper.INSTANCE.convert(dto);
+    }
+
+    private JasperDetailDto mapToDto(JasperDetail detail) {
+        return TestMapper.INSTANCE.convert(detail);
     }
 }

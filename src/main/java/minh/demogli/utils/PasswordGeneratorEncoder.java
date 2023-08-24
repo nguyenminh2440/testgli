@@ -1,3 +1,4 @@
+/*
 package minh.demogli.utils;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,3 +13,5 @@ public class PasswordGeneratorEncoder {
         System.out.println(passwordEncoder.encode("user4"));
     }
 }
+*/
+//Driver file to generate encrypted passwords into database

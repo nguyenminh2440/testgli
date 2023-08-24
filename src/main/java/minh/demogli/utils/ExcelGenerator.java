@@ -15,13 +15,14 @@ import java.util.Date;
 import java.util.List;
 
 import static org.apache.poi.ss.util.CellUtil.createCell;
-
+//Excel file generator
 public class ExcelGenerator {
 
     private List<Product> productList;
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
 
+    //Create workbook
     public ExcelGenerator(List<Product> productList) {
         this.productList = productList;
         workbook = new XSSFWorkbook();

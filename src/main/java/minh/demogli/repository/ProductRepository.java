@@ -1,6 +1,7 @@
 package minh.demogli.repository;
 
 import jakarta.transaction.Transactional;
+import minh.demogli.entity.JasperDetail;
 import minh.demogli.entity.Product;
 import minh.demogli.payload.ProductDetailDto;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,6 +29,9 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     @Query(value = "SELECT * FROM products",nativeQuery = true)
     public List<Product> getAllProducts();
+
+
+
 
 
     @Modifying

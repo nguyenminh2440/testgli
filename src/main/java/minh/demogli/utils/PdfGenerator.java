@@ -10,7 +10,7 @@ import minh.demogli.entity.Product;
 
 import java.io.IOException;
 import java.util.List;
-
+//Generate PDF(No Jasper)
 public class PdfGenerator {
     public void generate(List<Product> productList, HttpServletResponse response) throws DocumentException, IOException {
 

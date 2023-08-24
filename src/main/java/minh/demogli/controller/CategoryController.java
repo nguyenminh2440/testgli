@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/categories")
+//Controller for Category
 public class CategoryController {
     private CategoryService categoryService;
 

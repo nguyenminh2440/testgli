@@ -1,6 +1,8 @@
 package minh.demogli.service;
 
+import minh.demogli.entity.JasperDetail;
 import minh.demogli.entity.Product;
+import minh.demogli.payload.JasperDetailDto;
 import minh.demogli.payload.ProductDetailDto;
 import minh.demogli.payload.ProductDto;
 
@@ -20,6 +22,9 @@ public interface ProductService {
     public List<ProductDto> getNonExpiredProducts();
 
     public List<Product> getAllProducts();
+
+    public List<JasperDetailDto> getJasperList();
+
 
     public void deleteProduct(Long id, Long categoryId);
 }
