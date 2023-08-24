@@ -10,6 +10,7 @@ import minh.demogli.utils.ExcelGenerator;
 import minh.demogli.utils.PdfGenerator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/{categoryId}/products")
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto,@PathVariable(name = "categoryId") Long categoryId) {
         return new ResponseEntity<>(productService.createProduct(productDto,categoryId), HttpStatus.CREATED);
@@ -43,11 +45,13 @@ public class ProductController {
         return new ResponseEntity<>(productService.getProductById(id, categoryId),HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{categoryId}/products/{id}")
     public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto,@PathVariable(name = "categoryId")Long categoryId,@PathVariable(name = "id") Long id) {
         return new ResponseEntity<>(productService.updateProduct(productDto,id,categoryId),HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{categoryId}/products/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable(name = "categoryId") Long categoryId,@PathVariable(name = "id") Long id) {
         productService.deleteProduct(id,categoryId);
