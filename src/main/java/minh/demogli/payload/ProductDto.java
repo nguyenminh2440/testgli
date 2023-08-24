@@ -3,7 +3,6 @@ package minh.demogli.payload;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import minh.demogli.entity.Category;
 
 import java.util.Date;
 

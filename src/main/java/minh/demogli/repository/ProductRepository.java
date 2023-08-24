@@ -1,7 +1,6 @@
 package minh.demogli.repository;
 
 import jakarta.transaction.Transactional;
-import minh.demogli.entity.JasperDetail;
 import minh.demogli.entity.Product;
 import minh.demogli.payload.ProductDetailDto;
 import org.springframework.data.jpa.repository.JpaRepository;

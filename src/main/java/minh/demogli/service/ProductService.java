@@ -1,6 +1,5 @@
 package minh.demogli.service;
 
-import minh.demogli.entity.JasperDetail;
 import minh.demogli.entity.Product;
 import minh.demogli.payload.JasperDetailDto;
 import minh.demogli.payload.ProductDetailDto;

@@ -1,7 +1,6 @@
 package minh.demogli.service;
 
 import minh.demogli.entity.JasperDetail;
-import minh.demogli.entity.Product;
 import minh.demogli.repository.JasperRepository;
 import minh.demogli.repository.ProductRepository;
 import net.sf.jasperreports.engine.*;

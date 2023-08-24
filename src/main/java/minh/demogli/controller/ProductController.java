@@ -3,7 +3,6 @@ package minh.demogli.controller;
 import com.lowagie.text.DocumentException;
 import jakarta.servlet.http.HttpServletResponse;
 import minh.demogli.entity.Product;
-import minh.demogli.payload.JasperDetailDto;
 import minh.demogli.payload.ProductDetailDto;
 import minh.demogli.payload.ProductDto;
 import minh.demogli.service.ProductService;

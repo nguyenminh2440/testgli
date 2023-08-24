@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import minh.demogli.payload.JasperDetailDto;
 
 
 import java.util.Date;
