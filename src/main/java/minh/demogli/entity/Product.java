@@ -35,7 +35,7 @@ public class Product {
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date expire;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="category_id",nullable = false)
     private Category category;
 

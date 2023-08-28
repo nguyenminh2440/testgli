@@ -2,6 +2,7 @@ package minh.demogli.service;
 
 import minh.demogli.entity.Category;
 import minh.demogli.entity.Product;
+import minh.demogli.payload.ProductDetailDto;
 import minh.demogli.payload.ProductDto;
 import minh.demogli.repository.CategoryRepoTests;
 import minh.demogli.repository.CategoryRepository;
@@ -15,6 +16,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -130,5 +134,53 @@ public class ProductServiceTests {
     @Test
     public void ProductServiceDeleteTest() {
         Assertions.assertAll(() -> implementation.deleteProduct(1L,1L));
+    }
+
+    @Test
+    public void ProductServiceGetProductDetailTest() {
+
+        ProductDetailDto dto = new ProductDetailDto();
+        dto.setPCode("JWA");
+        dto.setPName("JWA");
+        dto.setCName("JWA");
+
+        when(productRepository.getProductDetail(1L,1L)).thenReturn(dto);
+
+        ProductDetailDto result = implementation.getProductDetail(1L,1L);
+
+        Assertions.assertEquals("JWA", result.getPCode());
+
+
+    }
+
+    @Test
+    public void ProductServiceGetNonExpiredProductTest() throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = formatter.parse("26-09-2034");
+        Category category = new Category();
+        category.setCode("JWA");
+        category.setName("JWA");
+        Product product1 = new Product();
+        product1.setCode("JWA");
+        product1.setName("JWA");
+        product1.setPrice(10000);
+        product1.setExpire(date);
+        product1.setCategory(category);
+        date = formatter.parse("26-09-2026");
+        Product product2 = new Product();
+        product2.setCode("AWJ");
+        product2.setName("AWJ");
+        product2.setPrice(10000);
+        product2.setExpire(date);
+        product2.setCategory(category);
+        List<Product> list = new ArrayList<>();
+        list.add(product1);
+        list.add(product2);
+
+        when(productRepository.getNonExpiredProducts()).thenReturn(list);
+        List<ProductDto> result = implementation.getNonExpiredProducts();
+        Assertions.assertEquals("JWA",result.get(0).getCode());
+        Assertions.assertEquals("AWJ",result.get(1).getCode());
+
     }
 }
