@@ -173,6 +173,8 @@ public class ProductServiceTests {
         product2.setPrice(10000);
         product2.setExpire(date);
         product2.setCategory(category);
+
+
         List<Product> list = new ArrayList<>();
         list.add(product1);
         list.add(product2);
